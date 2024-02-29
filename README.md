@@ -1,4 +1,4 @@
-To run the Django API app, you need three terminals opened.
+To run the Django API app, you must have three terminals opened.
 Also, ensure Redis is installed and running on your system.
 
 Terminal 1. Django App
