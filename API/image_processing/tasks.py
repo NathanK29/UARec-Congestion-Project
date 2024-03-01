@@ -23,7 +23,7 @@ def scrape_webcams(self):
         if image['alt'] in workingCams:
             name = image['alt']
             link = image['src']
-            folder_path = "TempImage"
+            folder_path = "Temp-Image"
             os.makedirs(folder_path, exist_ok=True)
             timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
             filename = os.path.join(folder_path, name.replace(" ", "_") + '_')
