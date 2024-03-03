@@ -29,12 +29,12 @@ def scrape_webcams(self):
             folder_path = "Temp-Image"
             os.makedirs(folder_path, exist_ok=True)
             timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
-            filename = os.path.join(folder_path, name.replace(" ", "_") + '_')
-            with open(filename + timestamp + '.jpg', 'wb') as f:
+            filename = os.path.join(folder_path, name.replace(" ", "_") + '_') + timestamp + '.jpg'
+            with open(filename, 'wb') as f:
                 imgrequest = requests.get(link)
                 f.write(imgrequest.content)
             
-            with open(filename + timestamp + '.jpg', 'rb') as image_file:
+            with open(filename, 'rb') as image_file:
                 content = image_file.read()
             image = vision.Image(content=content)
             response = client.label_detection(image=image)
@@ -44,6 +44,6 @@ def scrape_webcams(self):
             imageRecord = Image(count=peopleCount, location=(workingCams[name])[15:])
             imageRecord.save()
 
-            os.remove(filename + timestamp + '.jpg')
+            os.remove(filename)
 
     return
