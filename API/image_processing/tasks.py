@@ -4,12 +4,6 @@ from bs4 import BeautifulSoup
 import os
 import datetime
 
-# @shared_task(bind=True)
-# def test_func(self):
-#     for i in range(10):
-#         print(i)
-#     return "Done"
-
 @shared_task(bind=True)
 def scrape_webcams(self):
     url = "https://rec.arizona.edu/facilities/webcams"
