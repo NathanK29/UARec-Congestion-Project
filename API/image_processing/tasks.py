@@ -3,6 +3,13 @@ import requests
 from bs4 import BeautifulSoup
 import os
 import datetime
+from google.oauth2 import service_account
+from google.cloud import vision
+from API.models import Image
+import json
+
+credentials = service_account.Credentials.from_service_account_file(
+    '../../uarec-congestion-af000c8e2ed3.json')
 
 @shared_task(bind=True)
 def scrape_webcams(self):
@@ -12,6 +19,8 @@ def scrape_webcams(self):
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
     images = soup.find_all('img')
+
+    client = vision.ImageAnnotatorClient(credentials=credentials)
 
     for image in images:
         if image['alt'] in workingCams:
@@ -24,4 +33,17 @@ def scrape_webcams(self):
             with open(filename + timestamp + '.jpg', 'wb') as f:
                 imgrequest = requests.get(link)
                 f.write(imgrequest.content)
-    return "Done"
+            
+            with open(filename + timestamp + '.jpg', 'rb') as image_file:
+                content = image_file.read()
+            image = vision.Image(content=content)
+            response = client.label_detection(image=image)
+            print(response)
+            peopleCount = sum(label.description.lower() == 'person' for label in response.label_annotations)
+
+            imageRecord = Image(count=peopleCount, location=(workingCams[name])[15:])
+            imageRecord.save()
+
+            os.remove(filename + timestamp + '.jpg')
+
+    return
