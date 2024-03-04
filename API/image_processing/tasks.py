@@ -6,10 +6,8 @@ import datetime
 from google.oauth2 import service_account
 from google.cloud import vision
 from API.models import Image
-import json
 
-credentials = service_account.Credentials.from_service_account_file(
-    '../../uarec-congestion-af000c8e2ed3.json')
+credentials = service_account.Credentials.from_service_account_file('../uarec-congestion-af000c8e2ed3.json')
 
 @shared_task(bind=True)
 def scrape_webcams(self):
@@ -37,9 +35,13 @@ def scrape_webcams(self):
             with open(filename, 'rb') as image_file:
                 content = image_file.read()
             image = vision.Image(content=content)
-            response = client.label_detection(image=image)
-            print(response)
-            peopleCount = sum(label.description.lower() == 'person' for label in response.label_annotations)
+            objects = client.object_localization(image=image).localized_object_annotations
+            peopleCount = 0
+            
+            # print(f"Number of objects found: {len(objects)}")
+            for object_ in objects:
+                if object_.name == 'Person':
+                    peopleCount += 1
 
             imageRecord = Image(count=peopleCount, location=(workingCams[name])[15:])
             imageRecord.save()
