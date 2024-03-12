@@ -10,7 +10,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'API.settings')
 app = Celery('API')
 app.conf.enable_utc = False
 
-app.conf.update(timezone = 'America/Denver')
+app.conf.update(timezone = 'America/Phoenix')
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 

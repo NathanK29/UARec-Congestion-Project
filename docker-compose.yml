@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   db:
@@ -34,7 +34,7 @@ services:
       - MYSQL_PASSWORD=password
       - MYSQL_DB=dmydatabase
       - REDIS_URL=redis://redis:6379/0
-      - TZ=America/Denver
+      - TZ=America/Phoenix
 
   celery:
     build: .
@@ -46,7 +46,7 @@ services:
       - redis
     environment:
       - REDIS_URL=redis://redis:6379/0
-      - TZ=America/Denver
+      - TZ=America/Phoenix
 
   celerybeat:
     build: .
@@ -58,7 +58,7 @@ services:
       - redis
     environment:
       - REDIS_URL=redis://redis:6379/0\
-      - TZ=America/Denver
+      - TZ=America/Phoenix
 
 volumes:
   mysql_data:
