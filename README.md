@@ -36,8 +36,6 @@ celery -A API beat --loglevel=info
 Make sure Docker is running:
 
 ```bash
-sudo systemctl start docker
-```
-```bash
+sudo systemctl start docker    (If you're using an EC2 instance)
 docker-compose up --build
 ```
