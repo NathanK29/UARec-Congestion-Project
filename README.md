@@ -30,3 +30,12 @@ Activate the virtual environment and start the Celery Beat scheduler:
 cd .\API\
 celery -A API beat --loglevel=info
 ```
+
+### Running with Docker
+
+Make sure Docker is running:
+
+```bash
+sudo systemctl start docker
+```bash
+docker-compose up --build
