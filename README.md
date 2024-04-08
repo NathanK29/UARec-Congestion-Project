@@ -37,5 +37,7 @@ Make sure Docker is running:
 
 ```bash
 sudo systemctl start docker
+```
 ```bash
 docker-compose up --build
+```
