@@ -10,7 +10,7 @@ req.fetch()
 data = req.images
 
 filtered_data = [[],[],[],[],[],[],[]]
-day = 5
+day = 1
 
 for item in data:
     date = item['date']
@@ -51,7 +51,7 @@ plt.scatter([t.strftime('%H:%M') for t in df['Time']], df['Count'], color='blue'
 sorted_times = [t.strftime('%H:%M') for t in df.sort_values(by='Minutes')['Time']]
 plt.plot([t.strftime('%H:%M') for t in df.sort_values(by='Minutes')['Time']], y_pred[df['Minutes'].argsort()], color='red', label=f'Regression Line (R² = {r_squared:.2f})')
 
-plt.title('Congestion Count for Monday')
+plt.title('Congestion Count for Tuesday')
 plt.xlabel('Time of Day')
 plt.ylabel('Congestion Count')
 tick_values = [time(hour=h).strftime('%H:%M') for h in range(6, 24)]

@@ -44,6 +44,6 @@ def predict_congestion(day, time_str, poly_features_list, models):
     return prediction[0]
 
 day = 0
-time_input = "21:30"
+time_input = "00:00"
 predicted_count = predict_congestion(day, time_input, poly_features_list, models)
 print(f"Predicted congestion for Monday at {time_input}: {predicted_count:.2f}")
