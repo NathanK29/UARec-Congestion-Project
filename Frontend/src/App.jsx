@@ -1,5 +1,6 @@
 import Title from "./title"
 import HowItWorks from "./HowItWorks"
+import OccupancyGraph from "./OccupancyGraph";
 
 function App() {
   return (
