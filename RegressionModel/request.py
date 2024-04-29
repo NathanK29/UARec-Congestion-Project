@@ -2,7 +2,7 @@ import requests
 
 class Request:
 
-    url = 'http://50.18.145.8:8000/images/'
+    url = 'http://54.241.130.139:8000/images/'
     images = None
 
     def fetch(self):

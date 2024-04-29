@@ -35,12 +35,12 @@ const createLabels = (start, end) => {
   // Example data structure for each day
   const hourlyData = {
     Monday: [0.5, 0.2, 0.05, 0.05, 0.05, 0.2, 0.5, 0.8, 1.3, 1.7, 2.2, 2.7, 3.2, 3.6, 4, 4.2, 4.5, 4.59],
-    Tuesday: [0.6, 0.1, ],
-    Wednesday: [15, 20, 10, 25, 20, 15, 20],
-    Thursday: [25, 30, 35, 40, 35, 30, 25],
-    Friday: [20, 20, 20, 20, 20, 20, 20],
-    Saturday: [10, 15, 20, 25, 30, 35, 40],
-    Sunday: [40, 35, 30, 25, 20, 15, 10],
+    Tuesday: [0.6, 0.2, 0.05, 0.05, 0.05, 0.2, 0.5, 1, 1.5, 2.2, 2.6, 3.2, 3.5, 3.7, 3.7, 3.4, 3.2, 2.5],
+    Wednesday: [0.6, 0.2, 0.05, 0.05, 0.05, 0.2, 0.5, 0.8, 1.5, 1.8, 2.4, 2.7, 3.15, 3.2, 3.2, 3, 2.5, 1.5],
+    Thursday: [0.5, 0.2, 0.05, 0.05, 0.2, 0.5, 0.6, 0.8, 1.3, 1.6, 2.1, 2.4, 2.7, 3.1, 3.2, 3.55, 3.65, 3.55],
+    Friday: [0.5 ],
+    Saturday: [],
+    Sunday: [],
   };
 
   const labels = createLabels(hoursByDay[selectedDay].start, hoursByDay[selectedDay].end);
