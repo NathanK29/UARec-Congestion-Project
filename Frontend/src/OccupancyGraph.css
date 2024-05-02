@@ -6,34 +6,43 @@
   height: 100vh; /* Full height of the viewport */
   position: relative;
 }
-  
+
+.graph-container {
+  position: absolute;
+  top: 14%; /* Adjust this to set how far from the top the graph should be */
+  left: 50%;
+  transform: translateX(-50%);
+  height: 60vh; /* Proportional height */
+  width: 80vw; /* Proportional width */
+  max-height: 600px; /* Maximum height */
+  max-width: 900px; /* Maximum width */
+}
+
+.selector {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1500px) {
   .graph-container {
-    position: absolute;
-    top: 57%; 
-    left: 44%;
-    transform: translate(-50%, -50%); 
-    height: 600px;
-    width: 900px;
-  }
-  
-  .selector {
-    top: 20px;
-    margin-left: 38.6%;
-    left: 50%;
-    transform: translateX(-50%);
-    transform: translateY(-4100%);
-    width: 200px;
+    width: 75vw;
   }
 
-  /* FIX THIS */
-  @media (max-width: 1500px) {
-    .graph-container {
-      height: 20%; 
-      width: 80%;
-      margin-top: 57%;
-    }
-  
-    .selector {
-      width: 180px;
-    }
+  .selector {
+    width: 180px;
   }
+}
+
+@media (max-width: 600px) {
+  .graph-container {
+    width: 90vw;
+  }
+
+  .selector {
+    width: 160px;
+  }
+}
