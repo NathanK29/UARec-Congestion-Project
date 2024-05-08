@@ -17,29 +17,26 @@ const hoursByDay = {
   Sunday: { start: 8, end: 24 },
 };
 
+const hourlyData = {
+  Monday: [{x: .15, y:2}],
+  Tuesday: [],
+  Wednesday: [],
+  Thursday: [],
+  Friday: [],
+  Saturday: [],
+  Sunday: []
+};
+
 const OccupancyGraph = () => {
   const currentDayIndex = new Date().getDay() - 1;
   const defaultDay = days[currentDayIndex === -1 ? 6 : currentDayIndex];
 
   const [selectedDay, setSelectedDay] = useState(defaultDay);
 
-  const createDataPoints = (start, end) => {
-    let points = [];
-    for (let i = 0; i < (end - start) * 4; i++) {
-      points.push({
-        x: i / 4 + start,  // x values are simply calculated by index/4 + start hour
-        y: Math.random() // Random data for demonstration, replace with actual data
-      });
-    }
-    return points;
-  };
-
-  const data = createDataPoints(hoursByDay[selectedDay].start, hoursByDay[selectedDay].end);
-
   const chartData = {
     datasets: [{
       label: `Occupancy Rate for ${selectedDay}`,
-      data: data,
+      data: hourlyData[selectedDay],
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
       pointRadius: 6,
     }]
@@ -48,7 +45,8 @@ const OccupancyGraph = () => {
   const options = {
     scales: {
       y: {
-        beginAtZero: true
+        beginAtZero: true,
+        max: 7 // Set the maximum value of the y-axis to 7
       },
       x: {
         type: 'linear',
